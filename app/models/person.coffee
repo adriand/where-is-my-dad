@@ -5,16 +5,10 @@ class Person extends Spine.Model
 
   draw: (x, y) ->
     @image = new Image()
-    @myX = x
-    @myY = y
-    randomNum = Math.floor(Math.random() * 4)
+    randomNum = Math.floor(Math.random() * 7)
     @image.src = "/images/faces/face_#{randomNum}.png"
-    @newHeight = (window.IMAGE_WIDTH / (@image.width / @image.height))
     @image.onload = =>
-      @context.drawImage(@image, @myX, @myY, window.IMAGE_WIDTH, @newHeight )
-
-  pointIsInSelf: (x, y) ->
-    (@myX >= x >= (@myX + window.IMAGE_WIDTH)) && (@myY >= y >= (@myY + @newHeight))
-
+      @newHeight = (window.IMAGE_WIDTH / (@image.width / @image.height))
+      @context.drawImage(@image, x, y, window.IMAGE_WIDTH, @newHeight )
   
 module.exports = Person
