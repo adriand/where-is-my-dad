@@ -19,13 +19,16 @@ class App extends Spine.Controller
     @people = []
 
   draw: ->
-    count = 10
+    count = 300
     @people = while count -= 1
       person = new Person(context: @context)
       [x,y] = @randomLocation()
       person.draw(x, y)
       person
     [x,y] = @randomLocation()
+    # ensure that I'm not off the page entirely
+    x -= window.IMAGE_WIDTH if x + window.IMAGE_WIDTH >= @canvas.width
+    y -= 50 if y + 50 >= @canvas.height
     @me.draw(x, y)
 
   randomLocation: ->

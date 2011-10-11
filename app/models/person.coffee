@@ -5,7 +5,7 @@ class Person extends Spine.Model
 
   draw: (x, y) ->
     @image = new Image()
-    randomNum = Math.floor(Math.random() * 12)
+    randomNum = Math.floor(Math.random() * 17)
     @image.src = "/images/faces/face_#{randomNum}.png"
     @image.onload = =>
       width = (window.IMAGE_WIDTH - 10) + Math.floor(Math.random() * 20)
