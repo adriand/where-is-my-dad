@@ -10,13 +10,16 @@ class App extends Spine.Controller
 
   constructor: ->
     super
+    # I prefer document.getElementById in these instances because jQuery returns arrays.
+    # I find this is more precise.
     @canvas = document.getElementById('myCanvas')
+    @video = document.getElementById('myVideo')
     @context = @canvas.getContext('2d')
     @me = new Me(context: @context)
     @people = []
 
   draw: ->
-    count = 200
+    count = 10
     @people = while count -= 1
       person = new Person(context: @context)
       [x,y] = @randomLocation()
@@ -33,7 +36,14 @@ class App extends Spine.Controller
   click: (e) =>
     [x, y] = @getClickLocation(e)
     if @me.pointIsInSelf(x, y)
-      alert("Found me!")
+      $(@video).show()
+      $(@video).bind "ended", =>
+        $(@video).hide()
+        @canvas.width = @canvas.width # clears the canvas
+        @draw()
+      randomNum = Math.floor(Math.random() * 7)
+      @video.src = "/vids/#{randomNum}.mp4"
+      @video.play()
 
   getClickLocation: (e) =>
     x = e.offsetX

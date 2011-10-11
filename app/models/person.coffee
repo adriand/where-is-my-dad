@@ -5,10 +5,11 @@ class Person extends Spine.Model
 
   draw: (x, y) ->
     @image = new Image()
-    randomNum = Math.floor(Math.random() * 7)
+    randomNum = Math.floor(Math.random() * 12)
     @image.src = "/images/faces/face_#{randomNum}.png"
     @image.onload = =>
-      @newHeight = (window.IMAGE_WIDTH / (@image.width / @image.height))
-      @context.drawImage(@image, x, y, window.IMAGE_WIDTH, @newHeight )
+      width = (window.IMAGE_WIDTH - 10) + Math.floor(Math.random() * 20)
+      @newHeight = (width / (@image.width / @image.height))
+      @context.drawImage(@image, x, y, width, @newHeight )
   
 module.exports = Person
