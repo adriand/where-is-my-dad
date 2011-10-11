@@ -1,0 +1,5 @@
+body{background-image:url("/images/washi.png")}
+h1{font-family:"Helvetica",sans-serif}
+#myCanvas{background-image:none;background-color:#fff}
+#game{position:relative}
+#myVideo{position:absolute;left:160px;top:60px;display:none}
